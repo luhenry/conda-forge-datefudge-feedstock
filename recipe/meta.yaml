@@ -14,7 +14,7 @@ source:
     - 0002-Revert-glibc-2.31-patch.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or osx]
 
 requirements:
