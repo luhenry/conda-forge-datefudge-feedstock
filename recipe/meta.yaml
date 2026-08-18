@@ -3,7 +3,7 @@
 
 package:
   name: {{ name|lower }}
-  version: {{ version }}
+  version: "{{ version }}"
 
 source:
   url: http://deb.debian.org/debian/pool/main/d/datefudge/datefudge_{{ version }}.tar.xz
