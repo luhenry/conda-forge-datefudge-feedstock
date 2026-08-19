@@ -10,8 +10,13 @@ source:
   sha256: 0f7c0ca9bd2b0ef6aa01eaaf82e36b94b5424b6b70d49a8123478bf4cdfb2a2d
   patches:
     - 0001-Make-the-Makefile-portable.patch
+    # Reverts upstream's glibc >= 2.31 gettimeofday() signature (void *tz)
+    # back to the pre-2.31 form (struct timezone *tz). This is only correct on
+    # platforms whose sysroot glibc is < 2.31 (e.g. 2.17 for linux-64/aarch64/
+    # ppc64le). riscv64 uses glibc 2.39, where reverting causes a
+    # conflicting-types error, so the patch is keyed on the stdlib version.
     # https://salsa.debian.org/debian/datefudge/-/commit/508fc0f371a5b056c1b7c9379b3446eb60af774a
-    - 0002-Revert-glibc-2.31-patch.patch
+    - 0002-Revert-glibc-2.31-patch.patch  # [float(c_stdlib_version) < 2.31]
 
 build:
   number: 1
